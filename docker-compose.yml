@@ -15,6 +15,13 @@ services:
         depends_on:
             - db
 
+    node:
+        image: node:18
+        working_dir: /app
+        volumes:
+            - .:/app
+        command: sh -c "npm install && npm run build"
+
     db:
         image: mysql:8
         container_name: lp-mysql
@@ -22,7 +29,6 @@ services:
         environment:
             MYSQL_DATABASE: lara-play
             MYSQL_ROOT_PASSWORD: rootpass
-            MYSQL_USER: root
             MYSQL_PASSWORD: root
         ports:
             - "3306:3306"
