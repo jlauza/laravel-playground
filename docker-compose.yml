@@ -1,0 +1,33 @@
+version: "3.8"
+
+services:
+    app:
+        build:
+            context: .
+        image: laravel-app
+        container_name: laravel-playground
+        ports:
+            - "8040:8040"
+        volumes:
+            - .:/var/www
+        working_dir: /var/www
+        command: php artisan serve --host=0.0.0.0 --port=8040
+        depends_on:
+            - db
+
+    db:
+        image: mysql:8
+        container_name: lp-mysql
+        restart: always
+        environment:
+            MYSQL_DATABASE: lara-play
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_USER: root
+            MYSQL_PASSWORD: root
+        ports:
+            - "3306:3306"
+        volumes:
+            - mysqldata:/var/lib/mysql
+
+volumes:
+    mysqldata:
