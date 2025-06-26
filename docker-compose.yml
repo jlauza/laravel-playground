@@ -21,7 +21,7 @@ services:
         restart: always
         environment:
             MYSQL_DATABASE: lara-play
-            MYSQL_ROOT_PASSWORD: root
+            MYSQL_ROOT_PASSWORD: rootpass
             MYSQL_USER: root
             MYSQL_PASSWORD: root
         ports:
